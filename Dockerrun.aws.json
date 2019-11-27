@@ -7,7 +7,7 @@
       "hostname": "client",
       "essential": false,
       "memory": 128
-    },
+    },",
     {
       "name": "server",
       "image": "yishayf/multi-server",
@@ -19,7 +19,7 @@
       "name": "worker",
       "image": "yishayf/multi-worker",
       "hostname": "worker",
-      "essential": false,
+      "essential": false,",
       "memory": 128
     },
     {
