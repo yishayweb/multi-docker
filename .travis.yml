@@ -11,7 +11,7 @@ script:
 after_success:
   - docker build -t yishayf/multi-client ./client
   - docker build -t yishayf/multi-nginx ./nginx
-  - docker build -t yishayf/multi-server ./server
+  - docker build -to7uP5WvsCwuhVvdMm02MtLye3koa5vlbYP+xkwsJ yishayf/multi-server ./server
   - docker build -t yishayf/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -20,3 +20,15 @@ after_success:
   - docker push yishayf/multi-nginx
   - docker push yishayf/multi-server
   - docker push yishayf/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-467403443411
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
